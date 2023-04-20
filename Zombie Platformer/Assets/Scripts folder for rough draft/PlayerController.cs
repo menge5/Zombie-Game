@@ -4,54 +4,135 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float playerSpeed = 5f;
-    private float playerThrust = 200f;
-    public GameObject projectile;
-    Rigidbody2D playerRB;
-    private bool Jump = false;
-    public bool look = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-        playerRB = GetComponent<Rigidbody2D>();
- 
-    }
+    public float moveSpeed = 5f;
+    private float moveDirection;
+    private float jumpForce = 5f;
+    private float checkRadius = .5f;
 
+    public GameObject myPlayer;
+
+    public Transform ceilingCheck;
+    public Transform groundCheck;
+
+    public LayerMask groundObject;
+
+    private Rigidbody2D rb;
+
+    private bool isJumping = false;
+    public bool facingRight = true;
+    private bool isGrounded;
+
+    private int jumpCount;
+    private int jumpMax = 2;
+
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+    // Start is called before the first frame update
+    private void Start()
+    {
+        jumpCount = jumpMax;
+    }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector2.right * playerSpeed * Time.deltaTime);
-            transform.Rotate(0f, 0f, 0f);
-        }
+        ProcessingInputs();
 
-        if (Input.GetKey(KeyCode.A))
-        {   
-            transform.Translate(Vector2.left * playerSpeed * Time.deltaTime);
+        Animate();
 
-        }
-        
-        if (Input.GetKeyDown(KeyCode.W) && Jump == false)
-        {
-            playerRB.AddForce(transform.up * playerThrust );
-            Jump = true;
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            transform.Rotate(0f, 180f, 0f);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            transform.Rotate(0f, 0f, 0f);
-        }
+
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        if(collision.gameObject.CompareTag("Floor"))
+        //Im at at the time 14.03 on my youtube video 
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundObject);
+        if (isGrounded)
         {
-            Jump = false;
+            jumpCount = jumpMax;
+        }
+
+
+        Move();
+    }
+
+    private void Move()
+    {
+        rb.velocity = new Vector2(moveDirection * moveSpeed, rb.velocity.y);
+
+        if (isJumping)
+        {
+
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            jumpCount--;
+        }
+        isJumping = false;
+    }
+
+    private void Animate()
+    {
+        if (moveDirection > 0 && !facingRight)
+        {
+            flipCharacter();
+
+        }
+        else if (moveDirection < 0 && facingRight)
+        {
+            flipCharacter();
+        }
+    }
+
+    private void ProcessingInputs()
+    {
+        moveDirection = Input.GetAxis("Horizontal");
+
+        if (Input.GetButtonDown("Jump") && jumpCount > 0)
+        {
+            isJumping = true;
+
+        }
+    }
+
+    private void flipCharacter()
+    {
+        facingRight = !facingRight;
+        transform.Rotate(0f, 180f, 0f);
+
+    }
+    IEnumerator PowerUpSpeed()
+    {
+        moveSpeed = 9f;
+        yield return new WaitForSeconds(5);
+        moveSpeed = 5f;
+    }
+
+    public void SpeedPowerUp()
+    {
+        StartCoroutine(PowerUpSpeed());
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = col.transform;
+        }
+        if (col.gameObject.CompareTag("Power Up"))
+        {
+            moveSpeed = 10f;
+        }
+        if (col.gameObject.CompareTag("spikes"))
+        {
+            Destroy(myPlayer);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "MovingPlatform")
+        {
+            transform.parent = null;
         }
     }
 }

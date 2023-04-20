@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     public GameObject projectile;
-    public PlayerController playerController;
+    public GameObject projectile2;
+    PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,9 +16,13 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && playerController.facingRight)
         {
             Instantiate(projectile, transform.position, projectile.transform.rotation);
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && !playerController.facingRight)
+        {
+            Instantiate(projectile2, transform.position, projectile2.transform.rotation);
         }
 
     }
