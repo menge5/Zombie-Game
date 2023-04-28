@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject projectile;
     public GameObject projectile2;
     PlayerController playerController;
+    public Transform shootLoc;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +19,11 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && playerController.facingRight)
         {
-            Instantiate(projectile, transform.position, projectile.transform.rotation);
+            Instantiate(projectile, shootLoc.position, Quaternion.identity);
         }
         if (Input.GetKeyDown(KeyCode.Space) && !playerController.facingRight)
         {
-            Instantiate(projectile2, transform.position, projectile2.transform.rotation);
+            Instantiate(projectile2, shootLoc.position, Quaternion.identity);
         }
 
     }
