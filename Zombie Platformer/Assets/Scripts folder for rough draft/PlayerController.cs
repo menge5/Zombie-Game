@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
 
     private int jumpCount;
-    private int jumpMax = 2;
+    private int jumpMax = 1;
 
 
     private void Awake()
