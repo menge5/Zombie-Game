@@ -16,7 +16,11 @@ public class cameraMover : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        transform.position = new Vector3(0, playerYPosition(), -1); ;
+        transform.position = new Vector3(0, playerYPosition()+3.38f, -1); 
+        if(transform.position.y >0)
+        {
+            transform.position = new Vector3(0, 0, -10);
+        }
   
     }
     private float playerYPosition()
