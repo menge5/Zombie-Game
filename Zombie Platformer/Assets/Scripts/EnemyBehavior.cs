@@ -6,7 +6,7 @@ public class EnemyBehavior : MonoBehaviour
 {
  
     public float attackRange = 13f;
-    public float speed = 5;
+    public float speed = 10;
     
    
 

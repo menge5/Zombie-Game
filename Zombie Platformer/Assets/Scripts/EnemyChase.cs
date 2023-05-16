@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyChase : StateMachineBehaviour
@@ -10,6 +11,8 @@ public class EnemyChase : StateMachineBehaviour
 
     Rigidbody2D bossRB;
     EnemyBehavior bossBehavior;
+
+    
 
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,7 +27,7 @@ public class EnemyChase : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Vector2 target = new Vector2(player.position.x, player.position.y);
+        Vector2 target = new Vector2(player.position.x, bossRB.position.y);
 
         Vector2 newpos = Vector2.MoveTowards(bossRB.position, target, bossBehavior.speed * Time.deltaTime);
 
@@ -33,6 +36,8 @@ public class EnemyChase : StateMachineBehaviour
         bossBehavior.lookAtPlayer();
 
         float distance = Vector2.Distance(player.position, bossRB.position);
+
+        if(distance == (0f, player)
 
         
     }
