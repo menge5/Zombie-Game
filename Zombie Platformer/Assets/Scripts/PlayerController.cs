@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = 10f;
         }
-        if (col.gameObject.CompareTag("spikes"))
+        if (col.gameObject.CompareTag("Spikes"))
         {
             Destroy(myPlayer);
         }

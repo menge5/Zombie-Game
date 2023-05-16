@@ -8,6 +8,8 @@ TagManager:
   - Projectile
   - walls
   - Enemy
+  - Spikes
+  - Power Up
   layers:
   - Default
   - TransparentFX
