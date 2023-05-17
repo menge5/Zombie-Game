@@ -14,6 +14,8 @@ public class EnemyChase : StateMachineBehaviour
 
     
 
+    
+
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -22,11 +24,16 @@ public class EnemyChase : StateMachineBehaviour
         bossRB = animator.GetComponent<Rigidbody2D>();
 
         bossBehavior = animator.GetComponent<EnemyBehavior>();
+
+     
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+
+        if(animator.GetBool("InRange"))
+        {
         Vector2 target = new Vector2(player.position.x, bossRB.position.y);
 
         Vector2 newpos = Vector2.MoveTowards(bossRB.position, target, bossBehavior.speed * Time.deltaTime);
@@ -36,8 +43,10 @@ public class EnemyChase : StateMachineBehaviour
         bossBehavior.lookAtPlayer();
 
         float distance = Vector2.Distance(player.position, bossRB.position);
+        }
 
-        if(distance == (0f, player)
+
+
 
         
     }
