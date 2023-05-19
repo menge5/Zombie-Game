@@ -119,10 +119,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.parent = col.transform;
         }
-        if (col.gameObject.CompareTag("Power Up"))
-        {
-            moveSpeed = 10f;
-        }
+
         if (col.gameObject.CompareTag("Spikes"))
         {
             Destroy(myPlayer);

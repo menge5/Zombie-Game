@@ -292,6 +292,8 @@ MonoBehaviour:
   projectile: {fileID: 648228421547850622, guid: c74d3e2332637a74fb21fff4ba6fea74, type: 3}
   projectile2: {fileID: 1961232705154355663, guid: 5bf212822f6d10a42a63bda5b3d958b3, type: 3}
   shootLoc: {fileID: 42155697}
+  health: 10
+  betterGun: 0
 --- !u!114 &606519584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1824,7 +1826,7 @@ GameObject:
   - component: {fileID: 1976712593}
   m_Layer: 0
   m_Name: zombie_0
-  m_TagString: Enemy
+  m_TagString: Enemy1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1996,7 +1998,7 @@ GameObject:
   - component: {fileID: 2140323460}
   m_Layer: 0
   m_Name: gun upgrades
-  m_TagString: Untagged
+  m_TagString: Power Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

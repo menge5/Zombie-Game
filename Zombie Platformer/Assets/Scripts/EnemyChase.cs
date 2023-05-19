@@ -7,7 +7,7 @@ public class EnemyChase : StateMachineBehaviour
 {
 
     //box to store the players transform info
-    public Transform player;
+     Transform player;
 
     Rigidbody2D bossRB;
     EnemyBehavior bossBehavior;

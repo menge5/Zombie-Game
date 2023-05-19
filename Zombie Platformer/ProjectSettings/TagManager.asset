@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Spikes
   - Power Up
+  - Enemy1
   layers:
   - Default
   - TransparentFX
