@@ -7,7 +7,7 @@ public class EnemyChase : StateMachineBehaviour
 {
 
     //box to store the players transform info
-    Transform player;
+    public Transform player;
 
     Rigidbody2D bossRB;
     EnemyBehavior bossBehavior;
@@ -32,18 +32,17 @@ public class EnemyChase : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
-        if(animator.GetBool("InRange"))
-        {
+
         Vector2 target = new Vector2(player.position.x, bossRB.position.y);
 
-        Vector2 newpos = Vector2.MoveTowards(bossRB.position, target, bossBehavior.speed * Time.deltaTime);
+        Vector2 newpos = Vector2.MoveTowards(bossRB.position, target, bossBehavior.speed * Time.deltaTime * 5f);
 
         bossRB.MovePosition(newpos);
 
         bossBehavior.lookAtPlayer();
 
         float distance = Vector2.Distance(player.position, bossRB.position);
-        }
+        
 
 
 

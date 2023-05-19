@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     private float moveDirection;
     private float jumpForce = 5f;
-    private float checkRadius = .5f;
+    public float checkRadius = .05f;
 
     public GameObject myPlayer;
 
