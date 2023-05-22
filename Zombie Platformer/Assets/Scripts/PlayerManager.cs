@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,7 +12,10 @@ public class PlayerManager : MonoBehaviour
     public Transform shootLoc;
     public float health = 10;
     public bool betterGun = false;
-    private float timer = 0;
+    private float timer = 5;
+    private bool Projectile1 = false;
+    private bool Projectile2 = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,42 +25,50 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if(betterGun == false)
-        {
-           if (Input.GetKeyDown(KeyCode.Space) && playerController.facingRight)
-           {
-                Instantiate(projectile, shootLoc.position, Quaternion.identity);
-
-           }
-          if (Input.GetKeyDown(KeyCode.Space) && !playerController.facingRight)
-          {
-              Instantiate(projectile2, shootLoc.position, Quaternion.identity);
-          }
-        }
-        if(betterGun == true )
         {
             if (Input.GetKeyDown(KeyCode.Space) && playerController.facingRight)
             {
                 Instantiate(projectile, shootLoc.position, Quaternion.identity);
-                timer += 1;
-                if (timer == 2 && playerController.facingRight)
-                {
-                    Instantiate(projectile, shootLoc.position, Quaternion.identity);
-                    timer = 0;
-                }
+
             }
             if (Input.GetKeyDown(KeyCode.Space) && !playerController.facingRight)
             {
                 Instantiate(projectile2, shootLoc.position, Quaternion.identity);
-                timer += 1;
-                if (timer == 2 && !playerController.facingRight)
-                {
-                    Instantiate(projectile2, shootLoc.position, Quaternion.identity);
-                    timer = 0;
-                }
+
             }
 
+
         }
+        if(betterGun ==true)
+        {
+           if (Input.GetKeyDown(KeyCode.Space) && playerController.facingRight)
+           {
+                Instantiate(projectile, shootLoc.position, Quaternion.identity);
+               
+                timer =- Time.deltaTime;
+                Projectile1 = true;
+            
+           }
+          if (Input.GetKeyDown(KeyCode.Space) && !playerController.facingRight)
+          {
+              Instantiate(projectile2, shootLoc.position, Quaternion.identity);
+
+            timer = -Time.deltaTime;
+            Projectile2 = true;
+
+          }
+        }
+
+        
+          if(timer <= 0)
+          {
+            timerEnds();
+          }
+
+
+        
 
 
     }
@@ -70,6 +82,23 @@ public class PlayerManager : MonoBehaviour
         {
             betterGun = true;
             Debug.Log("powerUp");
+
+        }
+    }
+    private void timerEnds()
+    {
+        if(Projectile1)
+        {
+            
+            Instantiate(projectile, shootLoc.position, Quaternion.identity);
+            timer = 5;
+            Projectile1 = false;
+        }
+        if (Projectile2)
+        {
+            Instantiate(projectile2, shootLoc.position, Quaternion.identity);
+            timer = 5;
+            Projectile2 = false;
         }
     }
 }
