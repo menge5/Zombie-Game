@@ -11,6 +11,8 @@ TagManager:
   - Spikes
   - Power Up
   - Enemy1
+  - Floor2
+  - SecondFloor
   layers:
   - Default
   - TransparentFX
