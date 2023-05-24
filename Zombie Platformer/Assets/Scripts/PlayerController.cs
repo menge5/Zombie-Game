@@ -122,10 +122,6 @@ public class PlayerController : MonoBehaviour
             transform.parent = col.transform;
         }
 
-        if (col.gameObject.CompareTag("Spikes"))
-        {
-            Destroy(myPlayer);
-        }
         if (col.gameObject.tag == "SecondFloor")
         {
             floor2 = true;
