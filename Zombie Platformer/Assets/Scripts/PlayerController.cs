@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool floor2 = false;
 
     private int jumpCount;
-    private int jumpMax = 1;
+    private int jumpMax = 2;
 
 
     private void Awake()
