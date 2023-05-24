@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     public bool betterGun = false;
     private float timer = 5;
     private bool Projectile1 = false;
-    public bool floor2 = false;
+  
     private bool Projectile2 = false;
 
     // Start is called before the first frame update
@@ -85,11 +85,7 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("powerUp");
 
         }
-        if(collision.gameObject.CompareTag("Floor2"))
-        {
-            floor2 = true;
-            Debug.Log("floor is true");
-        }
+
     }
     private void timerEnds()
     {

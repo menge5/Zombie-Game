@@ -6,12 +6,13 @@ public class squareYes : MonoBehaviour
 {
     public GameObject zombie;
     public Transform trans;
-    PlayerManager playerManager;
+    PlayerController PC;
     public float timer = 0f;
     // Start is called before the first frame update
     void Start()
     {
-        playerManager = GetComponent<PlayerManager>();
+        PC = GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
@@ -22,16 +23,13 @@ public class squareYes : MonoBehaviour
 
 
 
-        if (timer > 4f )
+        if (timer > 4f)
         {
             Instantiate(zombie, trans.position, Quaternion.identity);
             timer = 0f;
             Debug.Log("yes");
         }
-        if(playerManager.floor2 == true)
-        {
-            Debug.Log("yes two");
-        }
+
     }
 
 }

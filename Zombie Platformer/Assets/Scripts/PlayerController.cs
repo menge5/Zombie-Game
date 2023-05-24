@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public bool facingRight = true;
     private bool isGrounded;
 
+    public bool floor2 = false;
+
     private int jumpCount;
     private int jumpMax = 1;
 
@@ -123,6 +125,10 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.CompareTag("Spikes"))
         {
             Destroy(myPlayer);
+        }
+        if (col.gameObject.tag == "SecondFloor")
+        {
+            floor2 = true;
         }
     }
     private void OnCollisionExit2D(Collision2D col)
