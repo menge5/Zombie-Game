@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class health : MonoBehaviour
 {
-    PlayerManager playerManager;
+    PlayerManager TheManager;
     public Text healthText; 
     // Start is called before the first frame update
     void Start()
     {
-        playerManager = GetComponent<PlayerManager>();
+        TheManager = GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health : " + playerManager.health;
+        healthText.text = TheManager.health.ToString();
     }
 }
