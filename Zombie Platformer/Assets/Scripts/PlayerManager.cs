@@ -68,6 +68,12 @@ public class PlayerManager : MonoBehaviour
             timerEnds();
           }
 
+          if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+          
+
 
         
 
@@ -75,7 +81,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy1"))
+       if (collision.gameObject.CompareTag("Enemy1") || collision.gameObject.CompareTag("Spikes"))
         {
             health--;
         }
