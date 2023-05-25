@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     public GameObject projectile2;
     PlayerController playerController;
     public Transform shootLoc;
-    public float health = 10;
+    public int health = 10;
     public bool betterGun = false;
     private float timer = 5;
     private bool Projectile1 = false;
@@ -108,5 +108,9 @@ public class PlayerManager : MonoBehaviour
             timer = 5;
             Projectile2 = false;
         }
+    }
+    public void TakeDamage()
+    {
+        health = -1;
     }
 }
